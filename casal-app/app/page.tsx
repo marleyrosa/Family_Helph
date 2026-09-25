@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { AppStore } from '../lib/store';
 import { Navbar } from '../components/Navbar';
 import { EthicalDisclaimerModal } from '../components/EthicalDisclaimerModal';
+import { HoroscopeModal } from '../components/HoroscopeModal';
 import { DashboardTab } from '../components/DashboardTab';
 import { AnamnesisTab } from '../components/AnamnesisTab';
 import { MoodDiaryTab } from '../components/MoodDiaryTab';
@@ -15,6 +16,7 @@ export default function Home() {
   const [activeTab, setActiveTab] = useState('dashboard');
   const [activeUserId, setActiveUserId] = useState('user-marley');
   const [isDisclaimerOpen, setIsDisclaimerOpen] = useState(false);
+  const [isHoroscopeOpen, setIsHoroscopeOpen] = useState(false);
   const [, setRefreshTick] = useState(0);
 
   const activeUser = activeUserId === store.partner1.id ? store.partner1 : store.partner2;
@@ -40,6 +42,7 @@ export default function Home() {
         partnerUser={partnerUser}
         onSwitchUser={handleSwitchUser}
         onOpenDisclaimer={() => setIsDisclaimerOpen(true)}
+        onOpenHoroscope={() => setIsHoroscopeOpen(true)}
       />
 
       {/* Main Content Area */}
@@ -94,6 +97,12 @@ export default function Home() {
       <EthicalDisclaimerModal
         isOpen={isDisclaimerOpen}
         onClose={() => setIsDisclaimerOpen(false)}
+      />
+
+      {/* ✨ Horoscope Modal */}
+      <HoroscopeModal
+        isOpen={isHoroscopeOpen}
+        onClose={() => setIsHoroscopeOpen(false)}
       />
     </div>
   );

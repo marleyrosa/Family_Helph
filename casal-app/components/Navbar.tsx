@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Heart, LayoutDashboard, CalendarCheck, FileText, BookOpen, ShieldAlert, Users, Compass } from 'lucide-react';
+import { Heart, LayoutDashboard, CalendarCheck, FileText, BookOpen, ShieldAlert, Users, Compass, Sparkles } from 'lucide-react';
 import { UserProfile, Couple } from '../lib/types';
 
 interface Props {
@@ -12,6 +12,7 @@ interface Props {
   partnerUser: UserProfile;
   onSwitchUser: (userId: string) => void;
   onOpenDisclaimer: () => void;
+  onOpenHoroscope: () => void;
 }
 
 export function Navbar({
@@ -21,7 +22,8 @@ export function Navbar({
   activeUser,
   partnerUser,
   onSwitchUser,
-  onOpenDisclaimer
+  onOpenDisclaimer,
+  onOpenHoroscope
 }: Props) {
   const tabs = [
     { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
@@ -54,8 +56,18 @@ export function Navbar({
           </div>
         </div>
 
-        {/* User Toggle & Disclaimer */}
-        <div className="flex items-center gap-3">
+        {/* User Toggle, Horoscope & Disclaimer */}
+        <div className="flex items-center gap-2 sm:gap-3">
+          {/* ✨ Horoscope Button */}
+          <button
+            onClick={onOpenHoroscope}
+            className="flex items-center gap-1.5 rounded-full bg-gradient-to-r from-purple-600 to-indigo-600 px-3.5 py-1.5 text-xs font-bold text-white shadow-md shadow-purple-600/20 hover:opacity-95 transition"
+            title="Abrir Horóscopo do Dia"
+          >
+            <Sparkles className="h-3.5 w-3.5 text-amber-300 animate-pulse" />
+            <span>Horóscopo</span>
+          </button>
+
           {/* Switch Partner button */}
           <div className="flex items-center gap-1.5 rounded-full bg-zinc-100 p-1 border border-zinc-200 dark:bg-zinc-900 dark:border-zinc-800">
             <button
