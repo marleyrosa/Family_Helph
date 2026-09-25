@@ -1,5 +1,5 @@
 import { Couple, DailyAnswer, IndividualReport, MoodLog, UserProfile, WeeklySummary, MonthlyRanking, AnamnesisRecord } from './types';
-import { generateWeeklySummary, generateIndividualReport, generateTherapeuticMap } from './ai-therapist';
+import { generateTherapeuticMap } from './ai-therapist';
 
 const MOCK_COUPLE: Couple = {
   id: 'couple-marley-silvia',
@@ -128,48 +128,88 @@ export class AppStore {
   public monthlyRankings: MonthlyRanking[] = [];
 
   constructor() {
-    this.initDefaultData();
+    this.initSynchronousData();
   }
 
-  private async initDefaultData() {
-    // Generate initial therapeutic map for Marley & Silvia
+  private initSynchronousData() {
     this.anamnesisRecord.therapeuticMapSummary = generateTherapeuticMap(this.anamnesisRecord);
 
     const weekStart = getPastDateStr(6);
     const weekEnd = getPastDateStr(0);
 
-    const summary = await generateWeeklySummary(
-      this.couple.coupleName,
-      this.partner1,
-      this.partner2,
-      this.moodLogs.filter(m => m.userId === this.partner1.id),
-      this.moodLogs.filter(m => m.userId === this.partner2.id),
-      this.dailyAnswers.filter(a => a.userId === this.partner1.id),
-      this.dailyAnswers.filter(a => a.userId === this.partner2.id),
-      weekStart,
-      weekEnd
-    );
+    this.weeklySummaries = [
+      {
+        id: `summary-default`,
+        coupleId: this.couple.id,
+        weekStartDate: weekStart,
+        weekEndDate: weekEnd,
+        summaryText: `Nesta semana, o casal Marley & Silvia registrou um clima emocional extremamente positivo (média 4.6 de 5.0). O destaque foi o carinho constante e a abertura para conversas leves.`,
+        avgMoodPartner1: 4.57,
+        avgMoodPartner2: 4.57,
+        overallAvgMood: 4.57,
+        positiveHighlights: [
+          'A Silvia preparou um café especial e demonstrou carinho no início do dia.',
+          'O Marley foi super atencioso e ouviu os planos com entusiasmo.',
+          'Ótima conversa no jantar e alinhamento sobre a rotina.'
+        ],
+        growthPoints: [
+          'Pequenos ajustes no planejamento dos horários de saída.'
+        ],
+        suggestedActivity: 'Encontro de 45 minutos no domingo sem celulares para o Diálogo de Apreciação Mútua de Imago.',
+        createdAt: new Date().toISOString()
+      }
+    ];
 
-    const reportMarley = await generateIndividualReport(
-      this.partner1,
-      this.partner2,
-      this.moodLogs.filter(m => m.userId === this.partner1.id),
-      this.dailyAnswers.filter(a => a.userId === this.partner1.id),
-      weekStart,
-      weekEnd
-    );
-
-    const reportSilvia = await generateIndividualReport(
-      this.partner2,
-      this.partner1,
-      this.moodLogs.filter(m => m.userId === this.partner2.id),
-      this.dailyAnswers.filter(a => a.userId === this.partner2.id),
-      weekStart,
-      weekEnd
-    );
-
-    this.weeklySummaries = [summary];
-    this.individualReports = [reportMarley, reportSilvia];
+    this.individualReports = [
+      {
+        id: `ind-report-marley`,
+        userId: this.partner1.id,
+        coupleId: this.couple.id,
+        weekStartDate: weekStart,
+        weekEndDate: weekEnd,
+        reportText: `Olá, Marley Luciano. Sua média de humor foi de 4.6/5 nesta semana. Você demonstrou foco e lealdade na rotina. Lembramos que praticar a autorregulação emocional em momentos de estresse traz ainda mais leveza à parceria.`,
+        constructiveSuggestions: [
+          {
+            title: 'Expressar Necessidades em Primeira Pessoa ("Frases em Eu")',
+            description: 'Em vez de guardar ou recolher o estresse do trabalho, compartilhe seu momento com Silvia.',
+            actionableStep: 'Diga: "Tive um dia corrido, preciso de 15 minutos para desacelerar e depois conversamos com calma."'
+          }
+        ],
+        ragReferences: [
+          {
+            author: 'Dr. John Gottman',
+            framework: 'Método Gottman',
+            concept: 'Antídoto da Defensividade e Autorregulação',
+            quoteOrSummary: 'Fazer pausas de autorregulação fisiológica desacelera batimentos e restaura a sintonia do casal.'
+          }
+        ],
+        createdAt: new Date().toISOString()
+      },
+      {
+        id: `ind-report-silvia`,
+        userId: this.partner2.id,
+        coupleId: this.couple.id,
+        weekStartDate: weekStart,
+        weekEndDate: weekEnd,
+        reportText: `Olá, Silvia Amelia. Sua média de humor foi de 4.6/5 nesta semana. Você se sentiu muito acolhida nos momentos de carinho com Marley. Continuem cultivando os pequenos gestos de gratidão diária.`,
+        constructiveSuggestions: [
+          {
+            title: 'Validação e Escuta Ativa (A.R.E.)',
+            description: 'Aproveite os momentos de tranquilidade para praticar o diálogo de escuta vulnerável.',
+            actionableStep: 'Pergunte com carinho: "Como posso apoiar você hoje para o seu dia ser mais leve?"'
+          }
+        ],
+        ragReferences: [
+          {
+            author: 'Dra. Sue Johnson',
+            framework: 'Terapia Focada nas Emoções (EFT)',
+            concept: 'A.R.E. - Acessibilidade e Engajamento',
+            quoteOrSummary: 'Estar presente emocionalmente fortalece o sentimento de segurança afetiva no relacionamento.'
+          }
+        ],
+        createdAt: new Date().toISOString()
+      }
+    ];
 
     this.monthlyRankings = [
       {
