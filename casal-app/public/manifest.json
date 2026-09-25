@@ -1,0 +1,16 @@
+{
+  "name": "Family Health - Terapeuta de Casal",
+  "short_name": "TerapeutaCasal",
+  "description": "Acompanhamento diário, anamnese e conselhos de RAG para Marley Luciano e Silvia Amelia.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#f43f5e",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    }
+  ]
+}
