@@ -132,6 +132,7 @@ export class AppStore {
   constructor() {
     this.initSynchronousData();
     this.loadFromLocalStorage();
+    this.syncWithServer();
   }
 
   private initSynchronousData() {
@@ -270,6 +271,50 @@ export class AppStore {
     }
   }
 
+  public async syncWithServer() {
+    if (typeof window === 'undefined') return;
+    try {
+      const res = await fetch('/api/store');
+      if (res.ok) {
+        const json = await res.json();
+        if (json.success && json.data) {
+          const s = json.data;
+          if (s.anamnesisRecord) {
+            this.anamnesisRecord = s.anamnesisRecord;
+          }
+          if (s.moodLogs && Array.isArray(s.moodLogs) && s.moodLogs.length > 0) {
+            this.moodLogs = s.moodLogs;
+          }
+          if (s.dailyAnswers && Array.isArray(s.dailyAnswers) && s.dailyAnswers.length > 0) {
+            this.dailyAnswers = s.dailyAnswers;
+          }
+          this.saveToLocalStorage();
+        }
+      }
+    } catch (err) {
+      console.warn('Erro ao sincronizar com servidor:', err);
+    }
+  }
+
+  public async sendToServer() {
+    if (typeof window === 'undefined') return;
+    try {
+      const payload = {
+        anamnesisRecord: this.anamnesisRecord,
+        moodLogs: this.moodLogs,
+        dailyAnswers: this.dailyAnswers,
+        activeUserId: this.activeUserId
+      };
+      await fetch('/api/store', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+    } catch (err) {
+      console.warn('Erro ao enviar dados ao servidor:', err);
+    }
+  }
+
   public getActiveUser(): UserProfile {
     return this.activeUserId === this.partner1.id ? this.partner1 : this.partner2;
   }
@@ -281,6 +326,7 @@ export class AppStore {
   public switchActiveUser(userId: string) {
     this.activeUserId = userId;
     this.saveToLocalStorage();
+    this.sendToServer();
   }
 
   public saveAnamnesis(record: AnamnesisRecord) {
@@ -288,6 +334,7 @@ export class AppStore {
     record.updatedAt = new Date().toISOString();
     this.anamnesisRecord = record;
     this.saveToLocalStorage();
+    this.sendToServer();
   }
 
   public addMoodLog(moodScore: 1 | 2 | 3 | 4 | 5, note?: string) {
@@ -312,6 +359,7 @@ export class AppStore {
       this.moodLogs.push(newLog);
     }
     this.saveToLocalStorage();
+    this.sendToServer();
   }
 
   public addDailyAnswer(q1: string, q2: string, q3: string, q4: string) {
@@ -338,5 +386,6 @@ export class AppStore {
       this.dailyAnswers.push(newAnswer);
     }
     this.saveToLocalStorage();
+    this.sendToServer();
   }
 }

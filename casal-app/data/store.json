@@ -1,0 +1,64 @@
+{
+  "couple": {
+    "id": "couple-marley-silvia",
+    "coupleName": "Marley & Silvia",
+    "inviteCode": "MARLEY-SILVIA-2026",
+    "createdAt": "2026-01-10"
+  },
+  "partner1": {
+    "id": "user-marley",
+    "fullName": "Marley Luciano",
+    "email": "marley@example.com",
+    "birthDate": "1988-03-15",
+    "relationshipStartDate": "2018-09-20",
+    "coupleId": "couple-marley-silvia",
+    "partnerRole": "partner_1",
+    "avatarEmoji": "🌿",
+    "lgpdConsent": true
+  },
+  "partner2": {
+    "id": "user-silvia",
+    "fullName": "Silvia Amelia",
+    "email": "silvia@example.com",
+    "birthDate": "1990-07-28",
+    "relationshipStartDate": "2018-09-20",
+    "coupleId": "couple-marley-silvia",
+    "partnerRole": "partner_2",
+    "avatarEmoji": "🌸",
+    "lgpdConsent": true
+  },
+  "activeUserId": "user-marley",
+  "moodLogs": [],
+  "dailyAnswers": [],
+  "anamnesisRecord": {
+    "id": "anamnesis-marley-silvia",
+    "coupleId": "couple-marley-silvia",
+    "marleyAnamnesis": {
+      "familyOrigin": "Família unida, com foco forte em responsabilidade e trabalho. Meus pais me apoiavam bastante.",
+      "familyFeelings": "Sentia que precisava ser forte e responsável desde cedo para ajudar no ambiente familiar.",
+      "emotionHandling": "Aprendi a me autorregular em silêncio. Nem sempre demonstrava raiva ou vulnerabilidade abertamente.",
+      "pastRelationships": "Tive poucas relações anteriores, aprendi a valorizar muito a lealdade e a estabilidade.",
+      "selfImage": "Busco sempre entregar o meu melhor e proteger quem amo. Insegurança pontual com sobrecarga de tarefas.",
+      "marriageExpectations": "Ser um bom marido significa ser porto seguro, provedor de afeto, presença constante e diálogo."
+    },
+    "silviaAnamnesis": {
+      "familyOrigin": "Família afetuosa e comunicativa, onde conversas sobre sentimentos eram frequentes.",
+      "familyFeelings": "Sempre me senti muito ouvida e acolhida, com liberdade para expressar ideias e sentimentos.",
+      "emotionHandling": "Expressava emoções abertamente. O acolhimento familiar me ensinou a buscar diálogo nos conflitos.",
+      "pastRelationships": "Aprendi a importância da reciprocidade real e do respeito ao espaço do outro.",
+      "selfImage": "Sou muito dedicada e sensível. Admiro minha empatia e busca constante por harmonia.",
+      "marriageExpectations": "Ser uma boa esposa significa parceria verdadeira, apoio nos sonhos e carinho diário."
+    },
+    "jointAnamnesis": {
+      "howTheyMet": "Nos conhecemos em um evento de amigos em comum e a conexão foi imediata.",
+      "firstImpressionAndAttraction": "Marley se encantou com o sorriso e a energia leve da Silvia. Silvia admirou a firmeza e o respeito de Marley.",
+      "whatFoundInOther": "Um porto seguro, alguém com quem compartilhar risadas, planos e vida com profundidade.",
+      "firstConflictsAndDifferences": "Os primeiros conflitos surgiram ao ajustar ritmos de trabalho e formas de expressar estresse.",
+      "coupleEvolution": "O carinho e o respeito permaneceram intactos, crescendo com os anos.",
+      "accumulatedWounds": "Momentos de correria em que a escuta atenta ficou em segundo plano.",
+      "defenseMechanisms": "Às vezes o recolhimento em momentos de cansaço ou a pressa em resolver.",
+      "strengthsAndHiddenBeauty": "Humor compartilhado, lealdade profunda e um desejo sincero de caminhar juntos."
+    },
+    "updatedAt": "2026-09-26T13:30:00.000Z"
+  }
+}

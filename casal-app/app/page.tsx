@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { AppStore } from '../lib/store';
 import { Navbar } from '../components/Navbar';
 import { EthicalDisclaimerModal } from '../components/EthicalDisclaimerModal';
@@ -19,12 +19,29 @@ export default function Home() {
   const [isHoroscopeOpen, setIsHoroscopeOpen] = useState(false);
   const [, setRefreshTick] = useState(0);
 
+  // Sync with server on initial mount and setup background polling for cross-device sync
+  useEffect(() => {
+    async function initSync() {
+      await store.syncWithServer();
+      setRefreshTick(prev => prev + 1);
+    }
+    initSync();
+
+    const interval = setInterval(async () => {
+      await store.syncWithServer();
+      setRefreshTick(prev => prev + 1);
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, [store]);
+
   const activeUser = activeUserId === store.partner1.id ? store.partner1 : store.partner2;
   const partnerUser = activeUserId === store.partner1.id ? store.partner2 : store.partner1;
 
   const handleSwitchUser = (userId: string) => {
     store.switchActiveUser(userId);
     setActiveUserId(userId);
+    setRefreshTick(prev => prev + 1);
   };
 
   const handleSaved = () => {
@@ -89,7 +106,7 @@ export default function Home() {
       <footer className="mt-12 border-t border-zinc-200 py-6 text-center text-xs text-zinc-500 dark:border-zinc-800 dark:text-zinc-400">
         <p>Family Health — Agente Terapeuta de Casal • Marley Luciano & Silvia Amelia</p>
         <p className="mt-1 text-[11px] text-zinc-400">
-          Esta ferramenta não substitui a terapia profissional. RAG integrado com Método Gottman, EFT, Esther Perel e Imago.
+          Sincronização multi-dispositivo (PC ↔ Celular) ativa. RAG integrado com Gottman, EFT, Perel e Imago.
         </p>
       </footer>
 
