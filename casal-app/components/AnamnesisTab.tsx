@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { UserProfile, AnamnesisRecord, IndividualAnamnesis, JointAnamnesis } from '../lib/types';
 import { AppStore } from '../lib/store';
 import { Sparkles, Save, Heart, ShieldCheck, Compass, CheckCircle2, User, Users, BookOpen } from 'lucide-react';
@@ -21,6 +21,15 @@ export function AnamnesisTab({ store, partner1, partner2, onSaved }: Props) {
 
   const [savedSuccess, setSavedSuccess] = useState(false);
 
+  // Sync state with store data on initial render or when store loads from localStorage
+  useEffect(() => {
+    if (store.anamnesisRecord) {
+      setMarleyData({ ...store.anamnesisRecord.marleyAnamnesis });
+      setSilviaData({ ...store.anamnesisRecord.silviaAnamnesis });
+      setJointData({ ...store.anamnesisRecord.jointAnamnesis });
+    }
+  }, [store.anamnesisRecord]);
+
   const handleSaveAll = (e: React.FormEvent) => {
     e.preventDefault();
     const updatedRecord: AnamnesisRecord = {
@@ -32,7 +41,7 @@ export function AnamnesisTab({ store, partner1, partner2, onSaved }: Props) {
     store.saveAnamnesis(updatedRecord);
     setSavedSuccess(true);
     onSaved();
-    setTimeout(() => setSavedSuccess(false), 3000);
+    setTimeout(() => setSavedSuccess(false), 4000);
   };
 
   const therapeuticMap = store.anamnesisRecord.therapeuticMapSummary;
@@ -67,11 +76,11 @@ export function AnamnesisTab({ store, partner1, partner2, onSaved }: Props) {
       </div>
 
       {savedSuccess && (
-        <div className="flex items-center gap-3 rounded-2xl bg-emerald-50 border border-emerald-200 p-4 text-emerald-800 dark:bg-emerald-950/50 dark:border-emerald-900 dark:text-emerald-200 animate-in slide-in-from-top-2">
+        <div className="flex items-center gap-3 rounded-2xl bg-emerald-50 border border-emerald-200 p-4 text-emerald-800 dark:bg-emerald-950/50 dark:border-emerald-900 dark:text-emerald-200 animate-in slide-in-from-top-2 shadow-sm">
           <CheckCircle2 className="h-5 w-5 text-emerald-600 shrink-0" />
           <div>
-            <strong className="font-semibold block">História e Anamnese salvas com sucesso!</strong>
-            O agente terapeuta sincronizou os dados e atualizou o Mapa Terapêutico do Casal.
+            <strong className="font-semibold block">✓ Informações salvas com sucesso!</strong>
+            Sua Anamnese e Mapa Terapêutico foram gravados de forma segura no navegador.
           </div>
         </div>
       )}
@@ -160,7 +169,7 @@ export function AnamnesisTab({ store, partner1, partner2, onSaved }: Props) {
                 rows={3}
                 value={marleyData.familyOrigin}
                 onChange={e => setMarleyData({ ...marleyData, familyOrigin: e.target.value })}
-                className="w-full rounded-xl border border-zinc-200 px-4 py-2.5 text-sm outline-none focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-100"
+                className="w-full rounded-xl border border-zinc-200 px-4 py-2.5 text-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-100"
               />
             </div>
 
@@ -173,7 +182,7 @@ export function AnamnesisTab({ store, partner1, partner2, onSaved }: Props) {
                 rows={3}
                 value={marleyData.familyFeelings}
                 onChange={e => setMarleyData({ ...marleyData, familyFeelings: e.target.value })}
-                className="w-full rounded-xl border border-zinc-200 px-4 py-2.5 text-sm outline-none focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-100"
+                className="w-full rounded-xl border border-zinc-200 px-4 py-2.5 text-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-100"
               />
             </div>
 
@@ -186,7 +195,7 @@ export function AnamnesisTab({ store, partner1, partner2, onSaved }: Props) {
                 rows={3}
                 value={marleyData.emotionHandling}
                 onChange={e => setMarleyData({ ...marleyData, emotionHandling: e.target.value })}
-                className="w-full rounded-xl border border-zinc-200 px-4 py-2.5 text-sm outline-none focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-100"
+                className="w-full rounded-xl border border-zinc-200 px-4 py-2.5 text-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-100"
               />
             </div>
 
@@ -199,7 +208,7 @@ export function AnamnesisTab({ store, partner1, partner2, onSaved }: Props) {
                 rows={3}
                 value={marleyData.pastRelationships}
                 onChange={e => setMarleyData({ ...marleyData, pastRelationships: e.target.value })}
-                className="w-full rounded-xl border border-zinc-200 px-4 py-2.5 text-sm outline-none focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-100"
+                className="w-full rounded-xl border border-zinc-200 px-4 py-2.5 text-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-100"
               />
             </div>
 
@@ -212,7 +221,7 @@ export function AnamnesisTab({ store, partner1, partner2, onSaved }: Props) {
                 rows={3}
                 value={marleyData.selfImage}
                 onChange={e => setMarleyData({ ...marleyData, selfImage: e.target.value })}
-                className="w-full rounded-xl border border-zinc-200 px-4 py-2.5 text-sm outline-none focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-100"
+                className="w-full rounded-xl border border-zinc-200 px-4 py-2.5 text-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-100"
               />
             </div>
 
@@ -225,7 +234,7 @@ export function AnamnesisTab({ store, partner1, partner2, onSaved }: Props) {
                 rows={3}
                 value={marleyData.marriageExpectations}
                 onChange={e => setMarleyData({ ...marleyData, marriageExpectations: e.target.value })}
-                className="w-full rounded-xl border border-zinc-200 px-4 py-2.5 text-sm outline-none focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-100"
+                className="w-full rounded-xl border border-zinc-200 px-4 py-2.5 text-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-100"
               />
             </div>
           </div>
@@ -255,7 +264,7 @@ export function AnamnesisTab({ store, partner1, partner2, onSaved }: Props) {
                 rows={3}
                 value={silviaData.familyOrigin}
                 onChange={e => setSilviaData({ ...silviaData, familyOrigin: e.target.value })}
-                className="w-full rounded-xl border border-zinc-200 px-4 py-2.5 text-sm outline-none focus:border-pink-500 focus:ring-2 focus:ring-pink-500/20 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-100"
+                className="w-full rounded-xl border border-zinc-200 px-4 py-2.5 text-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-100"
               />
             </div>
 
@@ -268,7 +277,7 @@ export function AnamnesisTab({ store, partner1, partner2, onSaved }: Props) {
                 rows={3}
                 value={silviaData.familyFeelings}
                 onChange={e => setSilviaData({ ...silviaData, familyFeelings: e.target.value })}
-                className="w-full rounded-xl border border-zinc-200 px-4 py-2.5 text-sm outline-none focus:border-pink-500 focus:ring-2 focus:ring-pink-500/20 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-100"
+                className="w-full rounded-xl border border-zinc-200 px-4 py-2.5 text-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-100"
               />
             </div>
 
@@ -281,7 +290,7 @@ export function AnamnesisTab({ store, partner1, partner2, onSaved }: Props) {
                 rows={3}
                 value={silviaData.emotionHandling}
                 onChange={e => setSilviaData({ ...silviaData, emotionHandling: e.target.value })}
-                className="w-full rounded-xl border border-zinc-200 px-4 py-2.5 text-sm outline-none focus:border-pink-500 focus:ring-2 focus:ring-pink-500/20 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-100"
+                className="w-full rounded-xl border border-zinc-200 px-4 py-2.5 text-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-100"
               />
             </div>
 
@@ -294,7 +303,7 @@ export function AnamnesisTab({ store, partner1, partner2, onSaved }: Props) {
                 rows={3}
                 value={silviaData.pastRelationships}
                 onChange={e => setSilviaData({ ...silviaData, pastRelationships: e.target.value })}
-                className="w-full rounded-xl border border-zinc-200 px-4 py-2.5 text-sm outline-none focus:border-pink-500 focus:ring-2 focus:ring-pink-500/20 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-100"
+                className="w-full rounded-xl border border-zinc-200 px-4 py-2.5 text-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-100"
               />
             </div>
 
@@ -307,7 +316,7 @@ export function AnamnesisTab({ store, partner1, partner2, onSaved }: Props) {
                 rows={3}
                 value={silviaData.selfImage}
                 onChange={e => setSilviaData({ ...silviaData, selfImage: e.target.value })}
-                className="w-full rounded-xl border border-zinc-200 px-4 py-2.5 text-sm outline-none focus:border-pink-500 focus:ring-2 focus:ring-pink-500/20 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-100"
+                className="w-full rounded-xl border border-zinc-200 px-4 py-2.5 text-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-100"
               />
             </div>
 
@@ -320,7 +329,7 @@ export function AnamnesisTab({ store, partner1, partner2, onSaved }: Props) {
                 rows={3}
                 value={silviaData.marriageExpectations}
                 onChange={e => setSilviaData({ ...silviaData, marriageExpectations: e.target.value })}
-                className="w-full rounded-xl border border-zinc-200 px-4 py-2.5 text-sm outline-none focus:border-pink-500 focus:ring-2 focus:ring-pink-500/20 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-100"
+                className="w-full rounded-xl border border-zinc-200 px-4 py-2.5 text-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-100"
               />
             </div>
           </div>
@@ -350,7 +359,7 @@ export function AnamnesisTab({ store, partner1, partner2, onSaved }: Props) {
                 rows={3}
                 value={jointData.howTheyMet}
                 onChange={e => setJointData({ ...jointData, howTheyMet: e.target.value })}
-                className="w-full rounded-xl border border-zinc-200 px-4 py-2.5 text-sm outline-none focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-100"
+                className="w-full rounded-xl border border-zinc-200 px-4 py-2.5 text-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-100"
               />
             </div>
 
@@ -363,7 +372,7 @@ export function AnamnesisTab({ store, partner1, partner2, onSaved }: Props) {
                 rows={3}
                 value={jointData.firstImpressionAndAttraction}
                 onChange={e => setJointData({ ...jointData, firstImpressionAndAttraction: e.target.value })}
-                className="w-full rounded-xl border border-zinc-200 px-4 py-2.5 text-sm outline-none focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-100"
+                className="w-full rounded-xl border border-zinc-200 px-4 py-2.5 text-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-100"
               />
             </div>
 
@@ -375,7 +384,7 @@ export function AnamnesisTab({ store, partner1, partner2, onSaved }: Props) {
                 rows={3}
                 value={jointData.whatFoundInOther}
                 onChange={e => setJointData({ ...jointData, whatFoundInOther: e.target.value })}
-                className="w-full rounded-xl border border-zinc-200 px-4 py-2.5 text-sm outline-none focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-100"
+                className="w-full rounded-xl border border-zinc-200 px-4 py-2.5 text-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-100"
               />
             </div>
 
@@ -388,7 +397,7 @@ export function AnamnesisTab({ store, partner1, partner2, onSaved }: Props) {
                 rows={3}
                 value={jointData.firstConflictsAndDifferences}
                 onChange={e => setJointData({ ...jointData, firstConflictsAndDifferences: e.target.value })}
-                className="w-full rounded-xl border border-zinc-200 px-4 py-2.5 text-sm outline-none focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-100"
+                className="w-full rounded-xl border border-zinc-200 px-4 py-2.5 text-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-100"
               />
             </div>
           </div>
@@ -418,7 +427,7 @@ export function AnamnesisTab({ store, partner1, partner2, onSaved }: Props) {
                 rows={3}
                 value={jointData.coupleEvolution}
                 onChange={e => setJointData({ ...jointData, coupleEvolution: e.target.value })}
-                className="w-full rounded-xl border border-zinc-200 px-4 py-2.5 text-sm outline-none focus:border-rose-500 focus:ring-2 focus:ring-rose-500/20 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-100"
+                className="w-full rounded-xl border border-zinc-200 px-4 py-2.5 text-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-100"
               />
             </div>
 
@@ -430,7 +439,7 @@ export function AnamnesisTab({ store, partner1, partner2, onSaved }: Props) {
                 rows={3}
                 value={jointData.accumulatedWounds}
                 onChange={e => setJointData({ ...jointData, accumulatedWounds: e.target.value })}
-                className="w-full rounded-xl border border-zinc-200 px-4 py-2.5 text-sm outline-none focus:border-rose-500 focus:ring-2 focus:ring-rose-500/20 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-100"
+                className="w-full rounded-xl border border-zinc-200 px-4 py-2.5 text-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-100"
               />
             </div>
 
@@ -443,7 +452,7 @@ export function AnamnesisTab({ store, partner1, partner2, onSaved }: Props) {
                 rows={3}
                 value={jointData.defenseMechanisms}
                 onChange={e => setJointData({ ...jointData, defenseMechanisms: e.target.value })}
-                className="w-full rounded-xl border border-zinc-200 px-4 py-2.5 text-sm outline-none focus:border-rose-500 focus:ring-2 focus:ring-rose-500/20 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-100"
+                className="w-full rounded-xl border border-zinc-200 px-4 py-2.5 text-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-100"
               />
             </div>
 
@@ -456,7 +465,7 @@ export function AnamnesisTab({ store, partner1, partner2, onSaved }: Props) {
                 rows={3}
                 value={jointData.strengthsAndHiddenBeauty}
                 onChange={e => setJointData({ ...jointData, strengthsAndHiddenBeauty: e.target.value })}
-                className="w-full rounded-xl border border-zinc-200 px-4 py-2.5 text-sm outline-none focus:border-rose-500 focus:ring-2 focus:ring-rose-500/20 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-100"
+                className="w-full rounded-xl border border-zinc-200 px-4 py-2.5 text-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-100"
               />
             </div>
           </div>
@@ -534,15 +543,28 @@ export function AnamnesisTab({ store, partner1, partner2, onSaved }: Props) {
           </div>
         )}
 
-        {/* Floating save action */}
+        {/* Floating save action button with dynamic Blue -> Green state */}
         {activeStep !== 'mapa' && (
           <div className="pt-2 flex justify-end">
             <button
               type="submit"
-              className="flex items-center gap-2 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 px-6 py-3 font-semibold text-white shadow-lg shadow-teal-600/25 hover:opacity-95 transition"
+              className={`flex items-center gap-2 rounded-xl px-6 py-3 font-bold text-white shadow-lg transition-all duration-300 ${
+                savedSuccess
+                  ? 'bg-emerald-600 shadow-emerald-600/30 scale-102 ring-2 ring-emerald-400'
+                  : 'bg-blue-600 hover:bg-blue-700 shadow-blue-600/25 active:scale-98'
+              }`}
             >
-              <Save className="h-4 w-4" />
-              <span>Salvar Anamnese & Atualizar Mapa</span>
+              {savedSuccess ? (
+                <>
+                  <CheckCircle2 className="h-5 w-5 text-white animate-bounce" />
+                  <span>✓ Salvo com Sucesso!</span>
+                </>
+              ) : (
+                <>
+                  <Save className="h-4 w-4 text-white" />
+                  <span>Salvar Anamnese & Atualizar Mapa</span>
+                </>
+              )}
             </button>
           </div>
         )}

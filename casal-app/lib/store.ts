@@ -1,6 +1,8 @@
 import { Couple, DailyAnswer, IndividualReport, MoodLog, UserProfile, WeeklySummary, MonthlyRanking, AnamnesisRecord } from './types';
 import { generateTherapeuticMap } from './ai-therapist';
 
+const STORAGE_KEY = 'family_health_marley_silvia_v3';
+
 const MOCK_COUPLE: Couple = {
   id: 'couple-marley-silvia',
   coupleName: 'Marley & Silvia',
@@ -129,6 +131,7 @@ export class AppStore {
 
   constructor() {
     this.initSynchronousData();
+    this.loadFromLocalStorage();
   }
 
   private initSynchronousData() {
@@ -229,6 +232,44 @@ export class AppStore {
     ];
   }
 
+  private loadFromLocalStorage() {
+    if (typeof window === 'undefined') return;
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return;
+      const parsed = JSON.parse(raw);
+      if (parsed.anamnesisRecord) {
+        this.anamnesisRecord = parsed.anamnesisRecord;
+      }
+      if (parsed.moodLogs && Array.isArray(parsed.moodLogs)) {
+        this.moodLogs = parsed.moodLogs;
+      }
+      if (parsed.dailyAnswers && Array.isArray(parsed.dailyAnswers)) {
+        this.dailyAnswers = parsed.dailyAnswers;
+      }
+      if (parsed.activeUserId) {
+        this.activeUserId = parsed.activeUserId;
+      }
+    } catch (e) {
+      console.warn('Erro ao carregar do localStorage:', e);
+    }
+  }
+
+  public saveToLocalStorage() {
+    if (typeof window === 'undefined') return;
+    try {
+      const payload = {
+        anamnesisRecord: this.anamnesisRecord,
+        moodLogs: this.moodLogs,
+        dailyAnswers: this.dailyAnswers,
+        activeUserId: this.activeUserId
+      };
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
+    } catch (e) {
+      console.warn('Erro ao salvar no localStorage:', e);
+    }
+  }
+
   public getActiveUser(): UserProfile {
     return this.activeUserId === this.partner1.id ? this.partner1 : this.partner2;
   }
@@ -239,12 +280,14 @@ export class AppStore {
 
   public switchActiveUser(userId: string) {
     this.activeUserId = userId;
+    this.saveToLocalStorage();
   }
 
   public saveAnamnesis(record: AnamnesisRecord) {
     record.therapeuticMapSummary = generateTherapeuticMap(record);
     record.updatedAt = new Date().toISOString();
     this.anamnesisRecord = record;
+    this.saveToLocalStorage();
   }
 
   public addMoodLog(moodScore: 1 | 2 | 3 | 4 | 5, note?: string) {
@@ -268,6 +311,7 @@ export class AppStore {
     } else {
       this.moodLogs.push(newLog);
     }
+    this.saveToLocalStorage();
   }
 
   public addDailyAnswer(q1: string, q2: string, q3: string, q4: string) {
@@ -293,5 +337,6 @@ export class AppStore {
     } else {
       this.dailyAnswers.push(newAnswer);
     }
+    this.saveToLocalStorage();
   }
 }

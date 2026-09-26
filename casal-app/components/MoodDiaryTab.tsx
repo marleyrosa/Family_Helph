@@ -1,9 +1,9 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { UserProfile, MoodScore } from '../lib/types';
 import { AppStore } from '../lib/store';
-import { Smile, Frown, Meh, Sun, Heart, CheckCircle2, Send, Sparkles } from 'lucide-react';
+import { Sun, Heart, CheckCircle2, Send, Sparkles } from 'lucide-react';
 
 interface Props {
   store: AppStore;
@@ -34,6 +34,23 @@ export function MoodDiaryTab({ store, activeUser, partnerUser, onSaved }: Props)
 
   const [savedSuccess, setSavedSuccess] = useState(false);
 
+  // Sync state whenever activeUser changes or store updates
+  useEffect(() => {
+    const curMood = store.moodLogs.find(
+      m => m.userId === activeUser.id && m.date === today
+    );
+    const curAnswer = store.dailyAnswers.find(
+      a => a.userId === activeUser.id && a.date === today
+    );
+
+    setSelectedMood(curMood?.moodScore || 4);
+    setMoodNote(curMood?.note || '');
+    setQ1Feeling(curAnswer?.q1Feeling || '');
+    setQ2Event(curAnswer?.q2ImportantEvent || '');
+    setQ3Positive(curAnswer?.q3PartnerPositive || '');
+    setQ4Inconvenient(curAnswer?.q4PartnerInconvenient || '');
+  }, [activeUser.id, store.moodLogs, store.dailyAnswers, today]);
+
   const moods: { score: MoodScore; emoji: string; label: string; bg: string; border: string; text: string }[] = [
     { score: 1, emoji: '🌧️', label: 'Desafiador', bg: 'bg-indigo-50 dark:bg-indigo-950/40', border: 'border-indigo-300', text: 'text-indigo-600' },
     { score: 2, emoji: '☁️', label: 'Sensível', bg: 'bg-blue-50 dark:bg-blue-950/40', border: 'border-blue-300', text: 'text-blue-600' },
@@ -48,7 +65,7 @@ export function MoodDiaryTab({ store, activeUser, partnerUser, onSaved }: Props)
     store.addDailyAnswer(q1Feeling, q2Event, q3Positive, q4Inconvenient);
     setSavedSuccess(true);
     onSaved();
-    setTimeout(() => setSavedSuccess(false), 3000);
+    setTimeout(() => setSavedSuccess(false), 4000);
   };
 
   return (
@@ -69,11 +86,11 @@ export function MoodDiaryTab({ store, activeUser, partnerUser, onSaved }: Props)
       </div>
 
       {savedSuccess && (
-        <div className="flex items-center gap-3 rounded-2xl bg-emerald-50 border border-emerald-200 p-4 text-emerald-800 dark:bg-emerald-950/50 dark:border-emerald-900 dark:text-emerald-200 animate-in slide-in-from-top-2">
+        <div className="flex items-center gap-3 rounded-2xl bg-emerald-50 border border-emerald-200 p-4 text-emerald-800 dark:bg-emerald-950/50 dark:border-emerald-900 dark:text-emerald-200 animate-in slide-in-from-top-2 shadow-sm">
           <CheckCircle2 className="h-5 w-5 text-emerald-600 dark:text-emerald-400 shrink-0" />
           <div>
-            <strong className="font-semibold block">Check-in salvo com sucesso!</strong>
-            Suas respostas foram gravadas e estarão disponíveis para o resumo semanal do casal.
+            <strong className="font-semibold block">✓ Check-in salvo com sucesso!</strong>
+            Suas respostas foram gravadas com segurança e integradas ao painel do casal.
           </div>
         </div>
       )}
@@ -195,10 +212,23 @@ export function MoodDiaryTab({ store, activeUser, partnerUser, onSaved }: Props)
           <div className="pt-2 flex justify-end">
             <button
               type="submit"
-              className="flex items-center gap-2 rounded-xl bg-gradient-to-r from-rose-600 to-pink-600 px-6 py-3 font-semibold text-white shadow-lg shadow-rose-600/25 hover:opacity-95 transition"
+              className={`flex items-center gap-2 rounded-xl px-6 py-3 font-bold text-white shadow-lg transition-all duration-300 ${
+                savedSuccess
+                  ? 'bg-emerald-600 shadow-emerald-600/30 ring-2 ring-emerald-400'
+                  : 'bg-rose-600 hover:bg-rose-700 shadow-rose-600/25 active:scale-98'
+              }`}
             >
-              <Send className="h-4 w-4" />
-              <span>Salvar Check-in Diário</span>
+              {savedSuccess ? (
+                <>
+                  <CheckCircle2 className="h-5 w-5 text-white animate-bounce" />
+                  <span>✓ Check-in Salvo!</span>
+                </>
+              ) : (
+                <>
+                  <Send className="h-4 w-4 text-white" />
+                  <span>Salvar Check-in Diário</span>
+                </>
+              )}
             </button>
           </div>
         </div>
