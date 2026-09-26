@@ -20,15 +20,31 @@ export function AnamnesisTab({ store, partner1, partner2, onSaved }: Props) {
   const [jointData, setJointData] = useState<JointAnamnesis>({ ...store.anamnesisRecord.jointAnamnesis });
 
   const [savedSuccess, setSavedSuccess] = useState(false);
+  const [isDirty, setIsDirty] = useState(false);
 
-  // Sync state with store data on initial render or when store loads from localStorage
+  // Sync state with store data on initial render or when store loads, UNLESS user has unsaved edits
   useEffect(() => {
-    if (store.anamnesisRecord) {
+    if (store.anamnesisRecord && !isDirty) {
       setMarleyData({ ...store.anamnesisRecord.marleyAnamnesis });
       setSilviaData({ ...store.anamnesisRecord.silviaAnamnesis });
       setJointData({ ...store.anamnesisRecord.jointAnamnesis });
     }
-  }, [store.anamnesisRecord]);
+  }, [store.anamnesisRecord, isDirty]);
+
+  const updateMarley = (field: keyof IndividualAnamnesis, val: string) => {
+    setIsDirty(true);
+    setMarleyData(prev => ({ ...prev, [field]: val }));
+  };
+
+  const updateSilvia = (field: keyof IndividualAnamnesis, val: string) => {
+    setIsDirty(true);
+    setSilviaData(prev => ({ ...prev, [field]: val }));
+  };
+
+  const updateJoint = (field: keyof JointAnamnesis, val: string) => {
+    setIsDirty(true);
+    setJointData(prev => ({ ...prev, [field]: val }));
+  };
 
   const handleSaveAll = (e: React.FormEvent) => {
     e.preventDefault();
@@ -39,6 +55,7 @@ export function AnamnesisTab({ store, partner1, partner2, onSaved }: Props) {
       jointAnamnesis: jointData,
     };
     store.saveAnamnesis(updatedRecord);
+    setIsDirty(false);
     setSavedSuccess(true);
     onSaved();
     setTimeout(() => setSavedSuccess(false), 4000);
@@ -168,7 +185,7 @@ export function AnamnesisTab({ store, partner1, partner2, onSaved }: Props) {
               <textarea
                 rows={3}
                 value={marleyData.familyOrigin}
-                onChange={e => setMarleyData({ ...marleyData, familyOrigin: e.target.value })}
+                onChange={e => updateMarley('familyOrigin', e.target.value)}
                 className="w-full rounded-xl border border-zinc-200 px-4 py-2.5 text-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-100"
               />
             </div>
@@ -181,7 +198,7 @@ export function AnamnesisTab({ store, partner1, partner2, onSaved }: Props) {
               <textarea
                 rows={3}
                 value={marleyData.familyFeelings}
-                onChange={e => setMarleyData({ ...marleyData, familyFeelings: e.target.value })}
+                onChange={e => updateMarley('familyFeelings', e.target.value)}
                 className="w-full rounded-xl border border-zinc-200 px-4 py-2.5 text-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-100"
               />
             </div>
@@ -194,7 +211,7 @@ export function AnamnesisTab({ store, partner1, partner2, onSaved }: Props) {
               <textarea
                 rows={3}
                 value={marleyData.emotionHandling}
-                onChange={e => setMarleyData({ ...marleyData, emotionHandling: e.target.value })}
+                onChange={e => updateMarley('emotionHandling', e.target.value)}
                 className="w-full rounded-xl border border-zinc-200 px-4 py-2.5 text-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-100"
               />
             </div>
@@ -207,7 +224,7 @@ export function AnamnesisTab({ store, partner1, partner2, onSaved }: Props) {
               <textarea
                 rows={3}
                 value={marleyData.pastRelationships}
-                onChange={e => setMarleyData({ ...marleyData, pastRelationships: e.target.value })}
+                onChange={e => updateMarley('pastRelationships', e.target.value)}
                 className="w-full rounded-xl border border-zinc-200 px-4 py-2.5 text-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-100"
               />
             </div>
@@ -220,7 +237,7 @@ export function AnamnesisTab({ store, partner1, partner2, onSaved }: Props) {
               <textarea
                 rows={3}
                 value={marleyData.selfImage}
-                onChange={e => setMarleyData({ ...marleyData, selfImage: e.target.value })}
+                onChange={e => updateMarley('selfImage', e.target.value)}
                 className="w-full rounded-xl border border-zinc-200 px-4 py-2.5 text-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-100"
               />
             </div>
@@ -233,7 +250,7 @@ export function AnamnesisTab({ store, partner1, partner2, onSaved }: Props) {
               <textarea
                 rows={3}
                 value={marleyData.marriageExpectations}
-                onChange={e => setMarleyData({ ...marleyData, marriageExpectations: e.target.value })}
+                onChange={e => updateMarley('marriageExpectations', e.target.value)}
                 className="w-full rounded-xl border border-zinc-200 px-4 py-2.5 text-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-100"
               />
             </div>
@@ -263,7 +280,7 @@ export function AnamnesisTab({ store, partner1, partner2, onSaved }: Props) {
               <textarea
                 rows={3}
                 value={silviaData.familyOrigin}
-                onChange={e => setSilviaData({ ...silviaData, familyOrigin: e.target.value })}
+                onChange={e => updateSilvia('familyOrigin', e.target.value)}
                 className="w-full rounded-xl border border-zinc-200 px-4 py-2.5 text-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-100"
               />
             </div>
@@ -276,7 +293,7 @@ export function AnamnesisTab({ store, partner1, partner2, onSaved }: Props) {
               <textarea
                 rows={3}
                 value={silviaData.familyFeelings}
-                onChange={e => setSilviaData({ ...silviaData, familyFeelings: e.target.value })}
+                onChange={e => updateSilvia('familyFeelings', e.target.value)}
                 className="w-full rounded-xl border border-zinc-200 px-4 py-2.5 text-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-100"
               />
             </div>
@@ -289,7 +306,7 @@ export function AnamnesisTab({ store, partner1, partner2, onSaved }: Props) {
               <textarea
                 rows={3}
                 value={silviaData.emotionHandling}
-                onChange={e => setSilviaData({ ...silviaData, emotionHandling: e.target.value })}
+                onChange={e => updateSilvia('emotionHandling', e.target.value)}
                 className="w-full rounded-xl border border-zinc-200 px-4 py-2.5 text-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-100"
               />
             </div>
@@ -302,7 +319,7 @@ export function AnamnesisTab({ store, partner1, partner2, onSaved }: Props) {
               <textarea
                 rows={3}
                 value={silviaData.pastRelationships}
-                onChange={e => setSilviaData({ ...silviaData, pastRelationships: e.target.value })}
+                onChange={e => updateSilvia('pastRelationships', e.target.value)}
                 className="w-full rounded-xl border border-zinc-200 px-4 py-2.5 text-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-100"
               />
             </div>
@@ -315,7 +332,7 @@ export function AnamnesisTab({ store, partner1, partner2, onSaved }: Props) {
               <textarea
                 rows={3}
                 value={silviaData.selfImage}
-                onChange={e => setSilviaData({ ...silviaData, selfImage: e.target.value })}
+                onChange={e => updateSilvia('selfImage', e.target.value)}
                 className="w-full rounded-xl border border-zinc-200 px-4 py-2.5 text-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-100"
               />
             </div>
@@ -328,7 +345,7 @@ export function AnamnesisTab({ store, partner1, partner2, onSaved }: Props) {
               <textarea
                 rows={3}
                 value={silviaData.marriageExpectations}
-                onChange={e => setSilviaData({ ...silviaData, marriageExpectations: e.target.value })}
+                onChange={e => updateSilvia('marriageExpectations', e.target.value)}
                 className="w-full rounded-xl border border-zinc-200 px-4 py-2.5 text-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-100"
               />
             </div>
@@ -358,7 +375,7 @@ export function AnamnesisTab({ store, partner1, partner2, onSaved }: Props) {
               <textarea
                 rows={3}
                 value={jointData.howTheyMet}
-                onChange={e => setJointData({ ...jointData, howTheyMet: e.target.value })}
+                onChange={e => updateJoint('howTheyMet', e.target.value)}
                 className="w-full rounded-xl border border-zinc-200 px-4 py-2.5 text-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-100"
               />
             </div>
@@ -371,7 +388,7 @@ export function AnamnesisTab({ store, partner1, partner2, onSaved }: Props) {
               <textarea
                 rows={3}
                 value={jointData.firstImpressionAndAttraction}
-                onChange={e => setJointData({ ...jointData, firstImpressionAndAttraction: e.target.value })}
+                onChange={e => updateJoint('firstImpressionAndAttraction', e.target.value)}
                 className="w-full rounded-xl border border-zinc-200 px-4 py-2.5 text-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-100"
               />
             </div>
@@ -383,7 +400,7 @@ export function AnamnesisTab({ store, partner1, partner2, onSaved }: Props) {
               <textarea
                 rows={3}
                 value={jointData.whatFoundInOther}
-                onChange={e => setJointData({ ...jointData, whatFoundInOther: e.target.value })}
+                onChange={e => updateJoint('whatFoundInOther', e.target.value)}
                 className="w-full rounded-xl border border-zinc-200 px-4 py-2.5 text-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-100"
               />
             </div>
@@ -396,7 +413,7 @@ export function AnamnesisTab({ store, partner1, partner2, onSaved }: Props) {
               <textarea
                 rows={3}
                 value={jointData.firstConflictsAndDifferences}
-                onChange={e => setJointData({ ...jointData, firstConflictsAndDifferences: e.target.value })}
+                onChange={e => updateJoint('firstConflictsAndDifferences', e.target.value)}
                 className="w-full rounded-xl border border-zinc-200 px-4 py-2.5 text-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-100"
               />
             </div>
@@ -426,7 +443,7 @@ export function AnamnesisTab({ store, partner1, partner2, onSaved }: Props) {
               <textarea
                 rows={3}
                 value={jointData.coupleEvolution}
-                onChange={e => setJointData({ ...jointData, coupleEvolution: e.target.value })}
+                onChange={e => updateJoint('coupleEvolution', e.target.value)}
                 className="w-full rounded-xl border border-zinc-200 px-4 py-2.5 text-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-100"
               />
             </div>
@@ -438,7 +455,7 @@ export function AnamnesisTab({ store, partner1, partner2, onSaved }: Props) {
               <textarea
                 rows={3}
                 value={jointData.accumulatedWounds}
-                onChange={e => setJointData({ ...jointData, accumulatedWounds: e.target.value })}
+                onChange={e => updateJoint('accumulatedWounds', e.target.value)}
                 className="w-full rounded-xl border border-zinc-200 px-4 py-2.5 text-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-100"
               />
             </div>
@@ -451,7 +468,7 @@ export function AnamnesisTab({ store, partner1, partner2, onSaved }: Props) {
               <textarea
                 rows={3}
                 value={jointData.defenseMechanisms}
-                onChange={e => setJointData({ ...jointData, defenseMechanisms: e.target.value })}
+                onChange={e => updateJoint('defenseMechanisms', e.target.value)}
                 className="w-full rounded-xl border border-zinc-200 px-4 py-2.5 text-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-100"
               />
             </div>
@@ -464,7 +481,7 @@ export function AnamnesisTab({ store, partner1, partner2, onSaved }: Props) {
               <textarea
                 rows={3}
                 value={jointData.strengthsAndHiddenBeauty}
-                onChange={e => setJointData({ ...jointData, strengthsAndHiddenBeauty: e.target.value })}
+                onChange={e => updateJoint('strengthsAndHiddenBeauty', e.target.value)}
                 className="w-full rounded-xl border border-zinc-200 px-4 py-2.5 text-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-100"
               />
             </div>

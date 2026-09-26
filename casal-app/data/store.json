@@ -28,13 +28,163 @@
     "lgpdConsent": true
   },
   "activeUserId": "user-marley",
-  "moodLogs": [],
-  "dailyAnswers": [],
+  "moodLogs": [
+    {
+      "id": "m-1",
+      "userId": "user-marley",
+      "coupleId": "couple-marley-silvia",
+      "date": "2026-09-20",
+      "moodScore": 4,
+      "note": "Dia produtivo e tranquilo",
+      "createdAt": "2026-09-26T16:27:25.906Z"
+    },
+    {
+      "id": "m-2",
+      "userId": "user-marley",
+      "coupleId": "couple-marley-silvia",
+      "date": "2026-09-21",
+      "moodScore": 5,
+      "note": "Passeio agradável com a Silvia",
+      "createdAt": "2026-09-26T16:27:25.906Z"
+    },
+    {
+      "id": "m-3",
+      "userId": "user-marley",
+      "coupleId": "couple-marley-silvia",
+      "date": "2026-09-22",
+      "moodScore": 3,
+      "note": "Dia cansativo de trabalho",
+      "createdAt": "2026-09-26T16:27:25.906Z"
+    },
+    {
+      "id": "m-4",
+      "userId": "user-marley",
+      "coupleId": "couple-marley-silvia",
+      "date": "2026-09-23",
+      "moodScore": 4,
+      "note": "Boa conversa à noite",
+      "createdAt": "2026-09-26T16:27:25.906Z"
+    },
+    {
+      "id": "m-5",
+      "userId": "user-marley",
+      "coupleId": "couple-marley-silvia",
+      "date": "2026-09-24",
+      "moodScore": 5,
+      "note": "Almoço muito acolhedor",
+      "createdAt": "2026-09-26T16:27:25.906Z"
+    },
+    {
+      "id": "m-6",
+      "userId": "user-marley",
+      "coupleId": "couple-marley-silvia",
+      "date": "2026-09-25",
+      "moodScore": 4,
+      "note": "Planejando o fim de semana",
+      "createdAt": "2026-09-26T16:27:25.906Z"
+    },
+    {
+      "id": "m-7",
+      "userId": "user-marley",
+      "coupleId": "couple-marley-silvia",
+      "date": "2026-09-26",
+      "moodScore": 5,
+      "note": "Sentindo paz e sintonia",
+      "createdAt": "2026-09-26T16:27:25.906Z"
+    },
+    {
+      "id": "ms-1",
+      "userId": "user-silvia",
+      "coupleId": "couple-marley-silvia",
+      "date": "2026-09-20",
+      "moodScore": 4,
+      "note": "Dia bom",
+      "createdAt": "2026-09-26T16:27:25.906Z"
+    },
+    {
+      "id": "ms-2",
+      "userId": "user-silvia",
+      "coupleId": "couple-marley-silvia",
+      "date": "2026-09-21",
+      "moodScore": 5,
+      "note": "Momento muito carinhoso juntos",
+      "createdAt": "2026-09-26T16:27:25.906Z"
+    },
+    {
+      "id": "ms-3",
+      "userId": "user-silvia",
+      "coupleId": "couple-marley-silvia",
+      "date": "2026-09-22",
+      "moodScore": 3,
+      "note": "Um pouco estressada com prazos",
+      "createdAt": "2026-09-26T16:27:25.906Z"
+    },
+    {
+      "id": "ms-4",
+      "userId": "user-silvia",
+      "coupleId": "couple-marley-silvia",
+      "date": "2026-09-23",
+      "moodScore": 4,
+      "note": "Marley me apoiou bastante",
+      "createdAt": "2026-09-26T16:27:25.906Z"
+    },
+    {
+      "id": "ms-5",
+      "userId": "user-silvia",
+      "coupleId": "couple-marley-silvia",
+      "date": "2026-09-24",
+      "moodScore": 4,
+      "note": "Caminhada relaxante",
+      "createdAt": "2026-09-26T16:27:25.906Z"
+    },
+    {
+      "id": "ms-6",
+      "userId": "user-silvia",
+      "coupleId": "couple-marley-silvia",
+      "date": "2026-09-25",
+      "moodScore": 5,
+      "note": "Ótima conversa no jantar",
+      "createdAt": "2026-09-26T16:27:25.906Z"
+    },
+    {
+      "id": "ms-7",
+      "userId": "user-silvia",
+      "coupleId": "couple-marley-silvia",
+      "date": "2026-09-26",
+      "moodScore": 5,
+      "note": "Muito alegre com nosso momento",
+      "createdAt": "2026-09-26T16:27:25.906Z"
+    }
+  ],
+  "dailyAnswers": [
+    {
+      "id": "da-marley-1",
+      "userId": "user-marley",
+      "coupleId": "couple-marley-silvia",
+      "date": "2026-09-26",
+      "q1Feeling": "Tranquilo, grato e focado.",
+      "q2ImportantEvent": "Concluí um projeto importante e conversamos sobre o futuro.",
+      "q3PartnerPositive": "A Silvia preparou um café delicioso e demonstrou muito carinho.",
+      "q4PartnerInconvenient": "Um pequeno ruído no horário de sair de casa.",
+      "createdAt": "2026-09-26T16:27:25.907Z"
+    },
+    {
+      "id": "da-silvia-1",
+      "userId": "user-silvia",
+      "coupleId": "couple-marley-silvia",
+      "date": "2026-09-26",
+      "q1Feeling": "Acolhida e bem disposta.",
+      "q2ImportantEvent": "Conseguimos organizar nossa semana sem correria.",
+      "q3PartnerPositive": "O Marley foi super atencioso e ouviu meus planos com entusiasmo.",
+      "q4PartnerInconvenient": "Fiquei um pouco ansiosa com a divisão das tarefas da tarde.",
+      "createdAt": "2026-09-26T16:27:25.907Z"
+    }
+  ],
   "anamnesisRecord": {
     "id": "anamnesis-marley-silvia",
     "coupleId": "couple-marley-silvia",
     "marleyAnamnesis": {
-      "familyOrigin": "Família unida, com foco forte em responsabilidade e trabalho. Meus pais me apoiavam bastante.",
+      "familyOrigin": "Família unida, com foco forte em responsabilidade e trabalho. Meus pais me apoiavam bastante.TESTE",
       "familyFeelings": "Sentia que precisava ser forte e responsável desde cedo para ajudar no ambiente familiar.",
       "emotionHandling": "Aprendi a me autorregular em silêncio. Nem sempre demonstrava raiva ou vulnerabilidade abertamente.",
       "pastRelationships": "Tive poucas relações anteriores, aprendi a valorizar muito a lealdade e a estabilidade.",
@@ -42,7 +192,7 @@
       "marriageExpectations": "Ser um bom marido significa ser porto seguro, provedor de afeto, presença constante e diálogo."
     },
     "silviaAnamnesis": {
-      "familyOrigin": "Família afetuosa e comunicativa, onde conversas sobre sentimentos eram frequentes.",
+      "familyOrigin": "Família afetuosa e comunicativa, onde conversas sobre sentimentos eram frequentes. Teste",
       "familyFeelings": "Sempre me senti muito ouvida e acolhida, com liberdade para expressar ideias e sentimentos.",
       "emotionHandling": "Expressava emoções abertamente. O acolhimento familiar me ensinou a buscar diálogo nos conflitos.",
       "pastRelationships": "Aprendi a importância da reciprocidade real e do respeito ao espaço do outro.",
@@ -59,6 +209,19 @@
       "defenseMechanisms": "Às vezes o recolhimento em momentos de cansaço ou a pressa em resolver.",
       "strengthsAndHiddenBeauty": "Humor compartilhado, lealdade profunda e um desejo sincero de caminhar juntos."
     },
-    "updatedAt": "2026-09-26T13:30:00.000Z"
-  }
+    "updatedAt": "2026-09-26T16:39:01.449Z",
+    "therapeuticMapSummary": {
+      "attachmentStyleMarley": "Busca de Segurança & Responsividade (Foco na resolução prática e proteção do ambiente familiar)",
+      "attachmentStyleSilvia": "Busca de Conexão Emocional Profunda & Validação (Foco na escuta atenta e presença afetuosa)",
+      "coupleNegativeCycle": "Ciclo Reativo de Sobrecarga vs. Silêncio Protetor: Quando o estresse do dia a dia se acumula, Marley tende a focar na solução e no recolhimento temporário para se autorregular, enquanto Silvia busca proximidade e diálogo imediato. Entender essa dinâmica evita que o espaço de autorregulação seja interpretado como afastamento.",
+      "coreStrengths": [
+        "Memória afetiva rica do início do relacionamento e forte admiração mútua.",
+        "Valores familiares sólidos e desejo genuíno de evolução contínua.",
+        "Capacidade de acolhimento e cumplicidade demonstradas nas fases marcantes.",
+        "Abertura para o diálogo reflexivo guiado pelo agente terapeuta."
+      ],
+      "therapistSynthesis": "O mapeamento de história de vida de Marley Luciano e Silvia Amelia revela duas trajetórias individuais de grande resiliência. Na infância e juventude, ambos desenvolveram mecanismos de proteção legítimos para lidar com cobranças e desafios. Quando se encontraram, viram um no outro um porto seguro e um olhar de admiração sincera. No momento presente, o trabalho do agente terapeuta será apoiar o casal na desconstrução de ruídos de comunicação, resgatando a leveza inicial e aplicando os conceitos de A.R.E. (Sue Johnson) e os Antídotos de Gottman."
+    }
+  },
+  "updatedAt": "2026-09-26T16:39:01.706Z"
 }

@@ -33,23 +33,31 @@ export function MoodDiaryTab({ store, activeUser, partnerUser, onSaved }: Props)
   const [q4Inconvenient, setQ4Inconvenient] = useState(existingAnswer?.q4PartnerInconvenient || '');
 
   const [savedSuccess, setSavedSuccess] = useState(false);
+  const [isDirty, setIsDirty] = useState(false);
 
-  // Sync state whenever activeUser changes or store updates
+  // Reset dirty status when switching active user
   useEffect(() => {
-    const curMood = store.moodLogs.find(
-      m => m.userId === activeUser.id && m.date === today
-    );
-    const curAnswer = store.dailyAnswers.find(
-      a => a.userId === activeUser.id && a.date === today
-    );
+    setIsDirty(false);
+  }, [activeUser.id]);
 
-    setSelectedMood(curMood?.moodScore || 4);
-    setMoodNote(curMood?.note || '');
-    setQ1Feeling(curAnswer?.q1Feeling || '');
-    setQ2Event(curAnswer?.q2ImportantEvent || '');
-    setQ3Positive(curAnswer?.q3PartnerPositive || '');
-    setQ4Inconvenient(curAnswer?.q4PartnerInconvenient || '');
-  }, [activeUser.id, store.moodLogs, store.dailyAnswers, today]);
+  // Sync state whenever activeUser changes or store updates, UNLESS user has unsaved edits
+  useEffect(() => {
+    if (!isDirty) {
+      const curMood = store.moodLogs.find(
+        m => m.userId === activeUser.id && m.date === today
+      );
+      const curAnswer = store.dailyAnswers.find(
+        a => a.userId === activeUser.id && a.date === today
+      );
+
+      setSelectedMood(curMood?.moodScore || 4);
+      setMoodNote(curMood?.note || '');
+      setQ1Feeling(curAnswer?.q1Feeling || '');
+      setQ2Event(curAnswer?.q2ImportantEvent || '');
+      setQ3Positive(curAnswer?.q3PartnerPositive || '');
+      setQ4Inconvenient(curAnswer?.q4PartnerInconvenient || '');
+    }
+  }, [activeUser.id, store.moodLogs, store.dailyAnswers, today, isDirty]);
 
   const moods: { score: MoodScore; emoji: string; label: string; bg: string; border: string; text: string }[] = [
     { score: 1, emoji: '🌧️', label: 'Desafiador', bg: 'bg-indigo-50 dark:bg-indigo-950/40', border: 'border-indigo-300', text: 'text-indigo-600' },
@@ -63,6 +71,7 @@ export function MoodDiaryTab({ store, activeUser, partnerUser, onSaved }: Props)
     e.preventDefault();
     store.addMoodLog(selectedMood, moodNote);
     store.addDailyAnswer(q1Feeling, q2Event, q3Positive, q4Inconvenient);
+    setIsDirty(false);
     setSavedSuccess(true);
     onSaved();
     setTimeout(() => setSavedSuccess(false), 4000);
@@ -113,7 +122,10 @@ export function MoodDiaryTab({ store, activeUser, partnerUser, onSaved }: Props)
                 <button
                   key={m.score}
                   type="button"
-                  onClick={() => setSelectedMood(m.score)}
+                  onClick={() => {
+                    setIsDirty(true);
+                    setSelectedMood(m.score);
+                  }}
                   className={`flex flex-col items-center justify-center rounded-2xl p-4 border transition-all ${
                     m.bg
                   } ${
@@ -138,7 +150,10 @@ export function MoodDiaryTab({ store, activeUser, partnerUser, onSaved }: Props)
             <input
               type="text"
               value={moodNote}
-              onChange={e => setMoodNote(e.target.value)}
+              onChange={e => {
+                setIsDirty(true);
+                setMoodNote(e.target.value);
+              }}
               placeholder="Ex: Tive um dia corrido mas o jantar foi muito relaxante..."
               className="w-full rounded-xl border border-zinc-200 px-4 py-2.5 text-sm outline-none focus:border-rose-500 focus:ring-2 focus:ring-rose-500/20 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-100"
             />
@@ -161,7 +176,10 @@ export function MoodDiaryTab({ store, activeUser, partnerUser, onSaved }: Props)
               type="text"
               required
               value={q1Feeling}
-              onChange={e => setQ1Feeling(e.target.value)}
+              onChange={e => {
+                setIsDirty(true);
+                setQ1Feeling(e.target.value);
+              }}
               placeholder="Ex: Me sinto grata e um pouco cansada pelo trabalho..."
               className="w-full rounded-xl border border-zinc-200 px-4 py-2.5 text-sm outline-none focus:border-rose-500 focus:ring-2 focus:ring-rose-500/20 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-100"
             />
@@ -175,7 +193,10 @@ export function MoodDiaryTab({ store, activeUser, partnerUser, onSaved }: Props)
             <input
               type="text"
               value={q2Event}
-              onChange={e => setQ2Event(e.target.value)}
+              onChange={e => {
+                setIsDirty(true);
+                setQ2Event(e.target.value);
+              }}
               placeholder="Ex: Fechei a meta do mês no trabalho..."
               className="w-full rounded-xl border border-zinc-200 px-4 py-2.5 text-sm outline-none focus:border-rose-500 focus:ring-2 focus:ring-rose-500/20 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-100"
             />
@@ -189,7 +210,10 @@ export function MoodDiaryTab({ store, activeUser, partnerUser, onSaved }: Props)
             <textarea
               rows={2}
               value={q3Positive}
-              onChange={e => setQ3Positive(e.target.value)}
+              onChange={e => {
+                setIsDirty(true);
+                setQ3Positive(e.target.value);
+              }}
               placeholder="Ex: Ele(a) trouxe meu café da manhã e fez um carinho antes de ir trabalhar..."
               className="w-full rounded-xl border border-zinc-200 px-4 py-2.5 text-sm outline-none focus:border-rose-500 focus:ring-2 focus:ring-rose-500/20 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-100"
             />
@@ -203,7 +227,10 @@ export function MoodDiaryTab({ store, activeUser, partnerUser, onSaved }: Props)
             <textarea
               rows={2}
               value={q4Inconvenient}
-              onChange={e => setQ4Inconvenient(e.target.value)}
+              onChange={e => {
+                setIsDirty(true);
+                setQ4Inconvenient(e.target.value);
+              }}
               placeholder="Ex: Fiquei chateado(a) quando ele(a) esqueceu de responder a mensagem sobre a janta..."
               className="w-full rounded-xl border border-zinc-200 px-4 py-2.5 text-sm outline-none focus:border-rose-500 focus:ring-2 focus:ring-rose-500/20 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-100"
             />
