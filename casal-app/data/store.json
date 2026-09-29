@@ -1,33 +1,47 @@
 {
-  "couple": {
-    "id": "couple-marley-silvia",
-    "coupleName": "Marley & Silvia",
-    "inviteCode": "MARLEY-SILVIA-2026",
-    "createdAt": "2026-01-10"
-  },
-  "partner1": {
-    "id": "user-marley",
-    "fullName": "Marley Luciano",
-    "email": "marley@example.com",
-    "birthDate": "1988-03-15",
-    "relationshipStartDate": "2018-09-20",
+  "anamnesisRecord": {
+    "id": "anamnesis-marley-silvia",
     "coupleId": "couple-marley-silvia",
-    "partnerRole": "partner_1",
-    "avatarEmoji": "🌿",
-    "lgpdConsent": true
+    "marleyAnamnesis": {
+      "familyOrigin": "A familia passava por um momento conturbado, excesso de agressao e violencia domestica diariamente, meus pais cuidavam de mim, relaçao de muita briga diaria com agressao fisica e mental, havia carinho cobraças e criticas.",
+      "familyFeelings": "Nao precisava agradar, respeitar regras e seguir ordens,  precisava ser forte diariamente para proteger minha mae.",
+      "emotionHandling": "Aprendi a me autorregular em silêncio, no isolamento sempre fui meu amigo, buscava conforto em oraçoes desde os 10 anos, sempre quis ser o contrario dos meus pais, hoje nao consumo alcool e nao falo palavroes devido aprendizado.",
+      "pastRelationships": "Tive poucas relações anteriores, aprendi a valorizar muito a lealdade e a estabilidade de forma rezervada, nao gosto de expor minha derrotas e vitorias.",
+      "selfImage": "Busco sempre entregar o meu melhor e proteger quem eu amo, na infancia fui muito humilhado devido a pobreza e por nao me achar bonito, isso me colocava mais timido e retraido, aprendir a me ver mais belo e seguro no presente.",
+      "marriageExpectations": "Ser um bom marido significa ser porto seguro, provedor de afeto, presença constante e diálogo a compressao nao e meu ponto forte e a paciencia espero trabalhar isso fortemente."
+    },
+    "silviaAnamnesis": {
+      "familyOrigin": "Minha familia tinha brigas do meu irmao mais velho. Meus pais nao orientavam. Minha mae, minha vo e meu pai. Minha mae se mudou para outro estado quando tinha 7 anos. Havia carinho, não tinha cobranças e nem critica.",
+      "familyFeelings": "Nao precisava agradar. Me sentia ouvida apenas pela minha mae. Podia errar, raramente era chamada atenção. ",
+      "emotionHandling": "Não podia. Era insentivada a aceitar tudo. Nao acolhiam. Quando errava nao ligavam.",
+      "pastRelationships": "Me sentia aceita. E ja fui traida quando era adolecente. Aprendi que nao podemos confiar em todos.",
+      "selfImage": "Adimirava minha força de vontade de fazer tudo que gostaria. Sentia que precisa mostrar inteligente e esperta.",
+      "marriageExpectations": "Ser uma boa esposa significa parceria , acolhimento, conexão e atenção. Devo oferecer meu amor e atenção,  e gostaria de receber respeito e carinho"
+    },
+    "jointAnamnesis": {
+      "howTheyMet": "Nos conhecemos em idas na casa dela, aonde eu era amigo do irmao dela, o jeitinho doce selvagem dela me pegou.",
+      "firstImpressionAndAttraction": "Marley se apaixonou pela atitude e a forma como ela olhava para ele, silvia se apaixonou pelo seu jeito misterioso e palavras bonitas, era bem complicado devido os pais nao apoiarem e por serem muitos jovens e estavam entre estudar e iniciar a jornada de trabalho.",
+      "whatFoundInOther": "Encontrava paixao, carinho e uma amizade verdadeira.",
+      "firstConflictsAndDifferences": "Quando a mae tentava inventar historias para separar os dois e ela se omitia, ela aceita muito facil as coisas e eu esperava atitude causando magua e decepção.",
+      "coupleEvolution": "Dois jovens que sairam da casa dos pais iniciaram uma loga jornada,  formaram a universidade juntos e conseguiram bons empregos, hoje moram juntos com muito trabalho para construir um futuro juntos.",
+      "accumulatedWounds": "Marley  sente abandono quando muita das vezes e transmitido pela falta de atenção ao parecer que nao esta no mesmo time, Silvia fica chateada com a forma rispida que e tratada pelo marley as vezes.",
+      "defenseMechanisms": "A maioria dos casos marley se isola e tenta buscar soluções consigo mesmo, silvia fica calada a principio pois nao tem segurança para comunicar e apos escreve longos email expondo sua opniao.",
+      "strengthsAndHiddenBeauty": "Marley nao tem muita coisa escondida apenas o desejo de ter muito dinheiro para ter uma vida segura e feliz ao lado dela, silvia lembra de momentos aonde marley se entregou a ela e lembra da sensaçao de gratidao de estar ao lado dele por causa disso."
+    },
+    "updatedAt": "2026-09-26T22:29:41.706Z",
+    "therapeuticMapSummary": {
+      "attachmentStyleMarley": "Busca de Segurança & Responsividade (Foco na resolução prática e proteção do ambiente familiar)",
+      "attachmentStyleSilvia": "Busca de Conexão Emocional Profunda & Validação (Foco na escuta atenta e presença afetuosa)",
+      "coupleNegativeCycle": "Ciclo Reativo de Sobrecarga vs. Silêncio Protetor: Quando o estresse do dia a dia se acumula, Marley tende a focar na solução e no recolhimento temporário para se autorregular, enquanto Silvia busca proximidade e diálogo imediato. Entender essa dinâmica evita que o espaço de autorregulação seja interpretado como afastamento.",
+      "coreStrengths": [
+        "Memória afetiva rica do início do relacionamento e forte admiração mútua.",
+        "Valores familiares sólidos e desejo genuíno de evolução contínua.",
+        "Capacidade de acolhimento e cumplicidade demonstradas nas fases marcantes.",
+        "Abertura para o diálogo reflexivo guiado pelo agente terapeuta."
+      ],
+      "therapistSynthesis": "O mapeamento de história de vida de Marley Luciano e Silvia Amelia revela duas trajetórias individuais de grande resiliência. Na infância e juventude, ambos desenvolveram mecanismos de proteção legítimos para lidar com cobranças e desafios. Quando se encontraram, viram um no outro um porto seguro e um olhar de admiração sincera. No momento presente, o trabalho do agente terapeuta será apoiar o casal na desconstrução de ruídos de comunicação, resgatando a leveza inicial e aplicando os conceitos de A.R.E. (Sue Johnson) e os Antídotos de Gottman."
+    }
   },
-  "partner2": {
-    "id": "user-silvia",
-    "fullName": "Silvia Amelia",
-    "email": "silvia@example.com",
-    "birthDate": "1990-07-28",
-    "relationshipStartDate": "2018-09-20",
-    "coupleId": "couple-marley-silvia",
-    "partnerRole": "partner_2",
-    "avatarEmoji": "🌸",
-    "lgpdConsent": true
-  },
-  "activeUserId": "user-marley",
   "moodLogs": [
     {
       "id": "m-1",
@@ -84,13 +98,13 @@
       "createdAt": "2026-09-26T16:27:25.906Z"
     },
     {
-      "id": "m-7",
+      "id": "m-1790462250487",
       "userId": "user-marley",
       "coupleId": "couple-marley-silvia",
       "date": "2026-09-26",
-      "moodScore": 5,
-      "note": "Sentindo paz e sintonia",
-      "createdAt": "2026-09-26T16:27:25.906Z"
+      "moodScore": 4,
+      "note": "sentido calmo e com energia",
+      "createdAt": "2026-09-26T22:37:30.487Z"
     },
     {
       "id": "ms-1",
@@ -147,81 +161,79 @@
       "createdAt": "2026-09-26T16:27:25.906Z"
     },
     {
-      "id": "ms-7",
+      "id": "m-1790462269457",
       "userId": "user-silvia",
       "coupleId": "couple-marley-silvia",
       "date": "2026-09-26",
-      "moodScore": 5,
-      "note": "Muito alegre com nosso momento",
-      "createdAt": "2026-09-26T16:27:25.906Z"
+      "moodScore": 4,
+      "note": "Feliz e contente",
+      "createdAt": "2026-09-26T22:37:49.457Z"
+    },
+    {
+      "id": "m-1790557712705",
+      "userId": "user-silvia",
+      "coupleId": "couple-marley-silvia",
+      "date": "2026-09-28",
+      "moodScore": 3,
+      "note": "",
+      "createdAt": "2026-09-28T01:08:32.705Z"
+    },
+    {
+      "id": "m-1790644515281",
+      "userId": "user-marley",
+      "coupleId": "couple-marley-silvia",
+      "date": "2026-09-29",
+      "moodScore": 3,
+      "note": "",
+      "createdAt": "2026-09-29T01:15:15.281Z"
     }
   ],
   "dailyAnswers": [
     {
-      "id": "da-marley-1",
+      "id": "da-1790462250489",
       "userId": "user-marley",
       "coupleId": "couple-marley-silvia",
       "date": "2026-09-26",
-      "q1Feeling": "Tranquilo, grato e focado.",
-      "q2ImportantEvent": "Concluí um projeto importante e conversamos sobre o futuro.",
-      "q3PartnerPositive": "A Silvia preparou um café delicioso e demonstrou muito carinho.",
-      "q4PartnerInconvenient": "Um pequeno ruído no horário de sair de casa.",
-      "createdAt": "2026-09-26T16:27:25.907Z"
+      "q1Feeling": "Bastante descansado e leve com a vida",
+      "q2ImportantEvent": "Sim, terminei de o  aplicativo de casa, e andei de bike as 5 da manha vendo o nascer do sol do lado do meu amor.",
+      "q3PartnerPositive": "A Silvia foi companheira de batalha, foi comigo cedo na bike apos na academia, depois dividimos as tarefas da casa, ela limpou tudo e eu cozinhei.",
+      "q4PartnerInconvenient": "Um pequeno ruído de falta de atenção pelo dia, ao sair cedo passou pelo portao e nao fechou, ao explicar coisas trocou palavras deixando convesa um pouco stressante.",
+      "createdAt": "2026-09-26T22:37:30.489Z"
     },
     {
-      "id": "da-silvia-1",
+      "id": "da-1790462269459",
       "userId": "user-silvia",
       "coupleId": "couple-marley-silvia",
       "date": "2026-09-26",
-      "q1Feeling": "Acolhida e bem disposta.",
-      "q2ImportantEvent": "Conseguimos organizar nossa semana sem correria.",
-      "q3PartnerPositive": "O Marley foi super atencioso e ouviu meus planos com entusiasmo.",
-      "q4PartnerInconvenient": "Fiquei um pouco ansiosa com a divisão das tarefas da tarde.",
-      "createdAt": "2026-09-26T16:27:25.907Z"
+      "q1Feeling": "Estou sentindo ok egrata",
+      "q2ImportantEvent": "Fomos bem trabalhadores,  fizemos muitas tarefas domésticas juntos",
+      "q3PartnerPositive": "Conseguiu segurar melhor suas frustrações com a minha falta de resolução de problemas/atitudes de esquecimento. Nao teve cobrança exessiva. Me tratou com respeito e conseguiu ser mais compreensivo por eu nao fazer as coisas na maneira que  gostaria, ",
+      "q4PartnerInconvenient": "Não",
+      "createdAt": "2026-09-26T22:37:49.459Z"
+    },
+    {
+      "id": "da-1790557712706",
+      "userId": "user-silvia",
+      "coupleId": "couple-marley-silvia",
+      "date": "2026-09-28",
+      "q1Feeling": "Dor de cabeça por cauda da menstruação ",
+      "q2ImportantEvent": "Sim, nao entendi o que foi combinado e fui atacada por ter entendido errado",
+      "q3PartnerPositive": "Me tratatou com carinho",
+      "q4PartnerInconvenient": "Falou muito alto apos eu entender o combinado errado e nao ter parado o carro no lugar combinado",
+      "createdAt": "2026-09-28T01:08:32.706Z"
+    },
+    {
+      "id": "da-1790644515282",
+      "userId": "user-marley",
+      "coupleId": "couple-marley-silvia",
+      "date": "2026-09-29",
+      "q1Feeling": "Me sinto um pouco preocupado com o trabalho, mas sei que as coisas irao voltar ao normal e os problemas se resolveram.",
+      "q2ImportantEvent": "Hoje nao teve algo marcante, porem tive uma nova ideia para desenvolver um aplicativo.",
+      "q3PartnerPositive": "Fiquei feliz pela iniciativa da Silvia em dar ideias de melhorias ao aplicativo",
+      "q4PartnerInconvenient": "Alguns detalhes simples, em demorar decidir se vai na academia, e em deixar a casa desorganizada, os panos soltos no chao.",
+      "createdAt": "2026-09-29T01:15:15.282Z"
     }
   ],
-  "anamnesisRecord": {
-    "id": "anamnesis-marley-silvia",
-    "coupleId": "couple-marley-silvia",
-    "marleyAnamnesis": {
-      "familyOrigin": "Família unida, com foco forte em responsabilidade e trabalho. Meus pais me apoiavam bastante.TESTE",
-      "familyFeelings": "Sentia que precisava ser forte e responsável desde cedo para ajudar no ambiente familiar.",
-      "emotionHandling": "Aprendi a me autorregular em silêncio. Nem sempre demonstrava raiva ou vulnerabilidade abertamente.",
-      "pastRelationships": "Tive poucas relações anteriores, aprendi a valorizar muito a lealdade e a estabilidade.",
-      "selfImage": "Busco sempre entregar o meu melhor e proteger quem amo. Insegurança pontual com sobrecarga de tarefas.",
-      "marriageExpectations": "Ser um bom marido significa ser porto seguro, provedor de afeto, presença constante e diálogo."
-    },
-    "silviaAnamnesis": {
-      "familyOrigin": "Família afetuosa e comunicativa, onde conversas sobre sentimentos eram frequentes. Teste",
-      "familyFeelings": "Sempre me senti muito ouvida e acolhida, com liberdade para expressar ideias e sentimentos.",
-      "emotionHandling": "Expressava emoções abertamente. O acolhimento familiar me ensinou a buscar diálogo nos conflitos.",
-      "pastRelationships": "Aprendi a importância da reciprocidade real e do respeito ao espaço do outro.",
-      "selfImage": "Sou muito dedicada e sensível. Admiro minha empatia e busca constante por harmonia.",
-      "marriageExpectations": "Ser uma boa esposa significa parceria verdadeira, apoio nos sonhos e carinho diário."
-    },
-    "jointAnamnesis": {
-      "howTheyMet": "Nos conhecemos em um evento de amigos em comum e a conexão foi imediata.",
-      "firstImpressionAndAttraction": "Marley se encantou com o sorriso e a energia leve da Silvia. Silvia admirou a firmeza e o respeito de Marley.",
-      "whatFoundInOther": "Um porto seguro, alguém com quem compartilhar risadas, planos e vida com profundidade.",
-      "firstConflictsAndDifferences": "Os primeiros conflitos surgiram ao ajustar ritmos de trabalho e formas de expressar estresse.",
-      "coupleEvolution": "O carinho e o respeito permaneceram intactos, crescendo com os anos.",
-      "accumulatedWounds": "Momentos de correria em que a escuta atenta ficou em segundo plano.",
-      "defenseMechanisms": "Às vezes o recolhimento em momentos de cansaço ou a pressa em resolver.",
-      "strengthsAndHiddenBeauty": "Humor compartilhado, lealdade profunda e um desejo sincero de caminhar juntos."
-    },
-    "updatedAt": "2026-09-26T16:39:01.449Z",
-    "therapeuticMapSummary": {
-      "attachmentStyleMarley": "Busca de Segurança & Responsividade (Foco na resolução prática e proteção do ambiente familiar)",
-      "attachmentStyleSilvia": "Busca de Conexão Emocional Profunda & Validação (Foco na escuta atenta e presença afetuosa)",
-      "coupleNegativeCycle": "Ciclo Reativo de Sobrecarga vs. Silêncio Protetor: Quando o estresse do dia a dia se acumula, Marley tende a focar na solução e no recolhimento temporário para se autorregular, enquanto Silvia busca proximidade e diálogo imediato. Entender essa dinâmica evita que o espaço de autorregulação seja interpretado como afastamento.",
-      "coreStrengths": [
-        "Memória afetiva rica do início do relacionamento e forte admiração mútua.",
-        "Valores familiares sólidos e desejo genuíno de evolução contínua.",
-        "Capacidade de acolhimento e cumplicidade demonstradas nas fases marcantes.",
-        "Abertura para o diálogo reflexivo guiado pelo agente terapeuta."
-      ],
-      "therapistSynthesis": "O mapeamento de história de vida de Marley Luciano e Silvia Amelia revela duas trajetórias individuais de grande resiliência. Na infância e juventude, ambos desenvolveram mecanismos de proteção legítimos para lidar com cobranças e desafios. Quando se encontraram, viram um no outro um porto seguro e um olhar de admiração sincera. No momento presente, o trabalho do agente terapeuta será apoiar o casal na desconstrução de ruídos de comunicação, resgatando a leveza inicial e aplicando os conceitos de A.R.E. (Sue Johnson) e os Antídotos de Gottman."
-    }
-  },
-  "updatedAt": "2026-09-26T16:39:01.706Z"
+  "activeUserId": "user-marley",
+  "updatedAt": "2026-09-29T01:15:15.283Z"
 }

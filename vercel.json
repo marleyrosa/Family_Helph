@@ -1,0 +1,6 @@
+{
+  "buildCommand": "cd casal-app && npm run build",
+  "outputDirectory": "casal-app/.next",
+  "installCommand": "cd casal-app && npm install",
+  "framework": "nextjs"
+}
