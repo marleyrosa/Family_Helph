@@ -1,6 +1,10 @@
-const apiKey = 're_AvKj2tCx_F14FDvEBjzhuhSTraZJ2Kc8r';
+const apiKey = process.env.RESEND_API_KEY || '';
 
 async function send() {
+  if (!apiKey) {
+    console.error('RESEND_API_KEY is not set in environment variables');
+    return;
+  }
   try {
     const response = await fetch('https://api.resend.com/emails', {
       method: 'POST',
@@ -22,11 +26,6 @@ async function send() {
               <p style="margin: 6px 0;"><strong>📶 Acesso Direto na Rede Wi-Fi de Casa (Zero Travamentos):</strong><br/>
                 <a href="http://192.168.1.22:3000" style="color: #e11d48; font-size: 16px; font-weight: bold; text-decoration: underline;">http://192.168.1.22:3000</a>
               </p>
-              <br/>
-              <p style="margin: 6px 0;"><strong>📱 Acesso HTTPS (De qualquer lugar):</strong><br/>
-                <a href="https://rare-yaks-own.loca.lt" style="color: #e11d48; font-weight: bold;">https://rare-yaks-own.loca.lt</a>
-              </p>
-              <p style="margin: 4px 0; font-size: 12px; color: #9f1239;"><em>(Se o localtunnel pedir o IP de liberação no 1º acesso, digite: 192.168.1.22)</em></p>
             </div>
 
             <h3 style="color: #27272a; font-size: 15px;">💡 Como instalar no celular como Aplicativo (PWA):</h3>
